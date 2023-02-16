@@ -23,6 +23,7 @@ for(var i=1; i<= 10; i++) {
 }
 console.log(i);
 */
+//Soltar alertas antres de entrar
 alert("hola!");
 let nombre=prompt("¿Como te llamas?");
 
@@ -32,3 +33,12 @@ let is_hungry=confirm("Tienes hambre");
 
 console.log(is_hungry);
 
+//Funcion tradicionales
+function numero_tacos (){
+    return 5;
+}
+console.log(numero_tacos());
+
+//Funciones modernas
+let cantidad_tacos=() => {5}
+console.log(cantidad_tacos());
