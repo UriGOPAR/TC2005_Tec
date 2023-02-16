@@ -42,3 +42,8 @@ console.log(numero_tacos());
 //Funciones modernas
 let cantidad_tacos=() => {5}
 console.log(cantidad_tacos());
+
+//Html dinámico
+let boton=document.getElementById("Buenos_días");
+boton.innerHTML= "¡Buenos Días!" ;
+boton.onclick= ()=> alert("¡Buenos Días!")
