@@ -64,3 +64,20 @@ for (let elementos in arreglos){
 for (let elementos of arreglos){
     console.log(elementos);
 }
+//OBJETOS
+let objeto ={
+    atributo_1:"Valor 1",
+    atributo_2:2,
+}
+console.log(objeto.atributo_1);
+console.log(objeto.atributo_2);
+console.log(objeto);
+
+for (let elementos in objeto){
+    console.log(elementos);}
+
+for (let elementos in objeto){
+    console.log(objeto.elementos);}
+
+const arreglo_de_objetos=[{atributo_1:"Valor 0",atributo_2:1},{},objeto];
+console.log(arreglo_de_objetos); 
