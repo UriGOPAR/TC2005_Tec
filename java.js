@@ -13,3 +13,11 @@ console.assert(1 === 1);
 console.assert(1 === "1");
 console.assert(1 == "1");
 console.assert( 1 == true);
+
+//alcance de las variables Aquí Ocurre un Error porque la variables i ya murio
+for(var i=1; i<= 10; i++) {
+    
+    console.log(i);
+
+}
+console.log(i);
