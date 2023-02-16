@@ -1,4 +1,5 @@
-/*Var es para variables como también con let */
+/*
+//Var es para variables como también con let 
 var comida="Chilaquiles";
 let cena="tacos";
 
@@ -16,8 +17,18 @@ console.assert( 1 == true);
 
 //alcance de las variables Aquí Ocurre un Error porque la variables i ya murio
 for(var i=1; i<= 10; i++) {
-    
+
     console.log(i);
 
 }
 console.log(i);
+*/
+alert("hola!");
+let nombre=prompt("¿Como te llamas?");
+
+console.log("hola "+nombre);
+
+let is_hungry=confirm("Tienes hambre");
+
+console.log(is_hungry);
+
