@@ -1,7 +1,18 @@
 body{
     background-color: white;
 }
-
-#titulo{
-
-}
+ #titulo{
+    color: red;
+    text-align: center;
+    padding-top: 10px;
+    
+ }
+ #img{
+    width: 200px;
+    height: 300px;
+    border-radius: 50%;
+    border-style: solid;
+    /* Centrar una imagen*/
+    margin: 10px auto;
+    display: block;
+ }
