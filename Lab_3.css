@@ -1,11 +1,11 @@
 body{
-    background-color: white;
+    background-color: black;
 }
  #titulo{
     color: red;
     text-align: center;
-    padding-top: 10px;
-    
+    padding-top: 0%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;   
  }
  #img{
     width: 200px;
@@ -15,4 +15,14 @@ body{
     /* Centrar una imagen*/
     margin: 10px auto;
     display: block;
+    border-color: white;
  }
+ .preguntas{
+    background-color: 
+    
+ }
+p{
+   color: white;
+   font-size: 15px;
+   font-family: Georgia, 'Times New Roman', Times, serif;
+}
