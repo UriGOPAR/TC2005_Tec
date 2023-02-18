@@ -106,7 +106,21 @@ for(let m=0;m<matriz.length;m++){
     document.write("Promedio de las filas <br>");
   
     let promedio=matriz[m].reduce((a,n)=>(a+=n,a),0)/matriz[m].length;
-   
+
     document.write(promedio);
     document.write("<br>");
 }
+document.write("<br>");
+//Ejercicio 5
+document.write("5.-Al proporcionar un número de 2 caracteres este se invierte:")
+document.write("<br>");
+let invnum= prompt("Dame un número con más de dos digitos");
+function invertir(numero){
+    return Number(numero.toString().split('').reverse().join(''))
+}document.write("<br>");
+document.write("Número que proporcionaste:");
+document.write(invnum);
+document.write("<br>");
+document.write("Número Invertido");
+document.write("<br>");
+document.write(invertir(invnum));
