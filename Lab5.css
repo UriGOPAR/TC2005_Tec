@@ -1,0 +1,39 @@
+body{
+    margin: 15px;
+}
+#titulo{
+    text-align: center;
+    background-color:#303F9F;
+    color: #FFFFFF;
+    padding: 15px 25px;
+    margin-bottom: 15px; 
+    font-family: fantasy;
+    margin: 0px;
+}
+#menu{
+    text-align: center;
+    background-color:white;
+    
+}
+.hol{
+    color:black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.hol:hover{
+    background-color:#3F51B5;
+    color: white;
+    padding: 15px 25px;
+}
+.sub{
+    text-align: center;
+}
+.nota1:hover{
+    background-color: #C5CAE9;
+    padding: 15px 25px;
+    color: black;
+
+}
+#img{
+    border-image-width: 50px;
+   
+}
