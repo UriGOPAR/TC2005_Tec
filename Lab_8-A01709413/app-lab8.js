@@ -16,3 +16,14 @@ for(let item of arreglo){
 console.log("Este log esta después de imprimir el arrelgo");
 
 setTimeout(()=>{console.log("Ya te hackié");},1200);
+//http es elmódulo que permite crear un servidor que pueda atender peticiones http
+const http= require('http');
+const server = http.createServer((request,response)=>{
+    console.log(request.url);
+  //  response.setHeader('Content-Type','text/html');
+   // response.write("");
+    //response.end();
+
+});
+
+server.listen(3000);
