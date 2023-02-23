@@ -9,3 +9,10 @@ const filesystem =require('fs');
 filesystem.writeFileSync('Hola.txt','hola desde node');
 console.log("Terminamos de escribir el archivo");
 
+const arreglo =[5000,60,90,100,10,20,10000,0,120,2000,340,1000,50];
+for(let item of arreglo){
+    setTimeout(() => {console.log(item);},item);
+}
+console.log("Este log esta después de imprimir el arrelgo");
+
+setTimeout(()=>{console.log("Ya te hackié");},1200);
