@@ -25,8 +25,8 @@ document.write("<br>");
 
 let numero1= Math.floor(Math.random()*100);
 let numero2= Math.floor(Math.random()*100);
+var primera=Date.now();
 let res = prompt("Dame la suma de " + numero1+ " + " + numero2);
-
 let r=parseInt(numero1)+parseInt(numero2);
 
 if(res == r){
@@ -34,7 +34,10 @@ if(res == r){
 }else{
     document.write("Su respuesta es incorrecta :(");
 }
-//Falta saber el tiempo que tarda en ejecutar
+var segunda=Date.now();
+resul=(segunda-primera)/1000;
+alert("Te haz tardado en contestar: " +resul);
+
 
 //Ejercicio 3 Contador
 /*

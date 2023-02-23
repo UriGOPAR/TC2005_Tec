@@ -175,7 +175,7 @@ console.log(objeto);
 
 for (let elemento in objeto) {
     console.log(elemento);
-}
+}   
 
 const arreglo_de_objetos = [{atributo_1: "valor 0", atributo_2: 1}, {}, objeto];
 console.log(arreglo_de_objetos);
