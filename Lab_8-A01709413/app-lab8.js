@@ -44,14 +44,26 @@ function binary(datos,val){
             end=mitad-1;
         }
     }
-
     return -1;
 }
 let arr =[1,5,6,8,9,11,12,26,36];
 let num =12;
 console.log("La posisción del dato que quieres buscar en el arreglo es: "+binary(arr,num));
 
-
+const http = require('http');
+filesystem.readFile("../Lab_2-A01709413/Lab_2-A01709413.html",  function (error, html) {
+    if (error) {
+        throw error; 
+    }
+    const server = http.createServer((request, response) => {
+        console.log(request.url);
+        response.setHeader('Content-Type', 'text/html');
+        response.write(html);
+        response.end();
+    })
+    server.listen(3000);
+});
+//COMENTARIO DE LO VISTO EN CLASE, NODE
 /*
 //fs es el módulo para trabajar con el sistema de archivos
 const filesystem =require('fs');
