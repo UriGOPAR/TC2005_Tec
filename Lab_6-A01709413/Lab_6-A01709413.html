@@ -8,15 +8,24 @@
     <link rel="stylesheet" href="Lab_6.css">
 </head>
 <body>
+    <h1>Validación de contraseña-JavaScript</h1>
+    <br>
     <form>
-        <label for="contraseña">Contraseña</label>
-        <input type="Contraseña" id="contraseña" placeholder="Escribe tu contraseña">
-        <label for="Confirmar">Confirmar Contraseña</label> 
-        <input type="Confirmar" id="confirmar" placeholder="Rescribir Contraseña">
-        <p id="mensaje">demo texto</p>
-        <input type="button" value="SUMIT"/>
+        <label for="preguntas">Preguntas</label>
         
+
     </form>
+    <form>
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" placeholder="Escribe tu contraseña">
+        <label for="cnfrm-password">Confirmar Contraseña</label>
+        <input type="password" id="cnfrm-password" placeholder="Confirma tu contraseña">
+        <p id="message"></p>
+        <input type="button" onclick="checkPassword()" value="ENVIAR"/>
+    </form>
+    <script src="lab_6.js"></script>
+
+
     
 </body>
 </html>
