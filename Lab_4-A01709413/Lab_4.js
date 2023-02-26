@@ -127,3 +127,31 @@ document.write("<br>");
 document.write("Número Invertido");
 document.write("<br>");
 document.write(invertir(invnum));
+document.write("<br>")
+
+//Ejercicio 6
+document.write("6.- Busqueda por medio de Binary Search");
+document.write("<br>")
+document.write("El cual conciste en encontrar elementos de un arreglo ordenado, de manera rápida")
+document.write("<br>")
+function binary(datos,val){
+    let first=0;
+    let end= datos.length-1;
+    while (first <= end){
+        let mitad=Math.floor((first + end)/2);
+        let dato=datos[mitad];
+
+        if(dato == val){
+            return mitad;
+        }
+        else if (val > dato){
+            first = mitad +1;
+        }else{
+            end=mitad-1;
+        }
+    }
+    return -1;
+}
+let arr =[1,5,6,8,9,11,12,15,26];
+let buscar =5;
+document.write("La posisción del dato que quieres buscar en el arreglo es: "+binary(arr,buscar));
