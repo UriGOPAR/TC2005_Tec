@@ -2,7 +2,7 @@ console.log("Hola mundo desde node");
 console.info("Este script se ejecuta por una computadora y no por un navegador");
 console.warn("document,alert,confirm y prompt, no existe en el entorno de Node")
 console.error("Así se ve un error");
-
+//Ejercicio 1
 let arreglo =[5,1,8,5,3,5];
 function promedio(arreglo){
     let res;
@@ -17,6 +17,39 @@ function promedio(arreglo){
 
 }
 console.log("El promedio del arreglo es " + promedio(arreglo));
+
+//Ejercicio 2
+const filesystem=require('fs');
+let text="Hola Desde NODE";
+function texto(text){
+    filesystem.writeFileSync("output.txt",text);
+}
+texto(text);
+console.log("Ya se creo y escribio en el archivo output :)")
+
+//Binary search
+function binary(datos,val){
+    let first=0;
+    let end= datos.length-1;
+    while (first <= end){
+        let mitad=Math.floor((first + end)/2);
+        let dato=datos[mitad];
+
+        if(dato == val){
+            return mitad;
+        }
+        else if (val > dato){
+            first = mitad +1;
+        }else{
+            end=mitad-1;
+        }
+    }
+
+    return -1;
+}
+let arr =[1,5,6,8,9,11,12,26,36];
+let num =12;
+console.log("La posisción del dato que quieres buscar en el arreglo es: "+binary(arr,num));
 
 
 /*
