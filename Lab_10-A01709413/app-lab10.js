@@ -37,8 +37,36 @@ const server = http.createServer( (request, response) => {
         response.write('</body></html>');
         response.end();
     } else if (request.url === "/ordenar" && request.method === "POST") {
-        response.write("Gracias por tu orden");
-        response.end();
+
+        const datos = [];
+
+        request.on('data', (dato) => {
+            console.log(dato);
+            datos.push(dato);
+        });
+
+        return request.on('end', () => {
+            const datos_completos = Buffer.concat(datos).toString();
+            console.log(datos_completos);
+            const tipo_chilaquiles = datos_completos.split('&')[0].split('=')[1];
+            console.log(tipo_chilaquiles);
+            if(tipo_chilaquiles === "rojos") {
+                response.setHeader('Content-Type', 'text/html');
+                response.write('<!DOCTYPE html>');
+                response.write("Gracias por tu orden");
+                response.write('<img alt="chilaquiles rojos" src="https://sazondemama.com/wp-content/uploads/2022/09/Como-hacer-la-receta-de-chilaquiles-rojos-y-cuantas-calorias-tiene-768x432.jpg">');
+                return response.end();
+            } else {
+                response.setHeader('Content-Type', 'text/html');
+                response.write('<!DOCTYPE html>');
+                response.write("Gracias por tu orden");
+                response.write('<img alt="chilaquiles verdes" src="https://i.pinimg.com/736x/9a/c3/2b/9ac32b9b26902dc6708d835d6b8d0954.jpg">');
+                return response.end();
+            }
+            
+        });
+
+        
     } else {
         response.statusCode = 404;
         response.write("Lo sentimos, de esos chilaquiles no tenemos");
