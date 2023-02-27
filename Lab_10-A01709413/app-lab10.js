@@ -1,6 +1,11 @@
 const http= require('http');
 const filesystem=require('fs');
-const server = http.createServer( (request, response) => {    
+const server =http.createServer((request,response) => {
+    console.log(request.url);
+    if(request )
+});
+server.listen(3000);
+/*const server = http.createServer( (request, response) => {    
 
     console.log(request.url);
 
@@ -77,4 +82,4 @@ const server = http.createServer( (request, response) => {
     
 });
 
-server.listen(3000);
+server.listen(3000);*/
