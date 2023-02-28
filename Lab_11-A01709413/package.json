@@ -1,0 +1,21 @@
+{
+  "name": "lab_11-a01709413",
+  "version": "1.0.0",
+  "description": "Lab_11-Curso Tc2005b",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UriGOPAR/TC2005_Tec"
+  },
+  "keywords": [
+    "node",
+    "tec",
+    "teus"
+  ],
+  "author": "Uri Gopar",
+  "license": "MIT"
+}
