@@ -2,7 +2,15 @@ const http= require('http');
 const filesystem=require('fs');
 const server =http.createServer((request,response) => {
     console.log(request.url);
-    if(request )
+    if(request.url == "/" ){
+        response.setHeader('Content-Type', 'text/html');
+        response.write('<!DOCTYPE html>');
+        response.write('<html>');
+        response.write('<head><meta charset="utf-8"></head><body>');
+        response.write("<h1>Chilaquiles</h1>");
+        response.write('<a href="/ordenar">Ordena tus chilaquiles aquí</a>');
+        response.end();
+    }
 });
 server.listen(3000);
 /*const server = http.createServer( (request, response) => {    
