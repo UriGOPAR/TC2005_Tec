@@ -3,43 +3,46 @@ const router = express.Router();
 const filesystem =require ('fs');
 
 router.get('/Pedir', (request, response, next) => {
-    response.setHeader('Content-Type', 'text/html');
-    response.write('<!DOCTYPE html>');
-    response.write('<html>');
-    response.write('<head><meta charset="utf-8"></head><body>');
-    response.write("<h1>Perritos</h1>"); 
-    response.write('<a href="/ordenar/adoptar">Adoptar al perrito</a>');
-    response.write('<br>')
-    response.write('<a href="/nosotros">Conce más de nosotros</a>')
-    response.end();
+    let html = `
+    <html>
+    <head><meta charset="utf-8"></head><body>
+    <h1>Perritos</h1> 
+    <a href="/ordenar/adoptar">Adoptar al perrito</a>
+    <br>
+    <a href="../sobremi/conoceme">Conce más de nosotros</a>   
+`;
+response.send(html);
+
 });
 router.get('/adoptar', (request, response, next) => {
-    response.setHeader('Content-Type', 'text/html');
-    response.write('<!DOCTYPE html>');
-    response.write('<html>');
-    response.write('<head><meta charset="utf-8"></head><body>');
-    response.write("<h1>Perritos</h1>");
-    response.write('<form action="/adoptar" method="POST">');
+    let html = `
+    <html>
+    <head><meta charset="utf-8"></head><body>
+    <h1>Perritos</h1>
+    <form action="/adoptar" method="POST">
 
-    let radios = '<fieldset><legend>¿Cuál perrito te gustaría adoptar</legend>';
-    radios += '<div><input type="radio" id="labrador" name="razas" value="labrador" checked>'
-    radios += '<label for="labrador">Labrador</label></div>';
-    radios += '<div><input type="radio" id="pug" name="razas" value="pug">';
-    radios += '<label for="pug">Pug</label></div>';
-    radios += '<div><input type="radio" id="doberman" name="razas" value="doberman">';
-    radios += '<label for="doberman">Doberman</label></div>';
-    radios += '<div><input type="radio" id="chihuahua" name="razas" value="chihuahua">';
-    radios += '<label for="chihuahua">Chihuahua</label></div></fieldset><br>';
-    //
-    response.write(radios);
+    <fieldset><legend>¿Cuál perrito te gustaría adoptar</legend>
+    <div><input type="radio" id="labrador" name="razas" value="labrador" checked>
+    <label for="labrador">Labrador</label></div>
+    <div><input type="radio" id="pug" name="razas" value="pug">
+    <label for="pug">Pug</label></div>
+    <div><input type="radio" id="doberman" name="razas" value="doberman">
+    <label for="doberman">Doberman</label></div>
+    <div><input type="radio" id="chihuahua" name="razas" value="chihuahua">
+    <label for="chihuahua">Chihuahua</label></div></fieldset><br>
 
-    response.write('<a href="/ordenar/datos">Rellenar datos para adoptar </a>')
+
+    <a href="/ordenar/datos">Rellenar datos para adoptar </a>
+    <br>
     
-    response.write('<a href="/">Volver a la principal</a>')
+    <a href="/ordenar/pedir">Volver a la principal</a>
 
-    response.write("</form>");
-    response.write('</body></html>');
-    response.end();
+    </form>
+    </body></html>
+
+`;
+response.send(html);
+
 });
 
 router.get('/datos', (request, response, next) => {
@@ -60,6 +63,8 @@ router.get('/datos', (request, response, next) => {
         <br>
         <input type="submit" value="Enviar">
         </form>
+        <a href="/ordenar/pedir">Volver a la principal</a>
+
     `;
     response.send(html);
 });
