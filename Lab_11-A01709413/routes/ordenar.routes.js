@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const filesystem =require ('fs');
 
-router.get('/Pedir', (request, response, next) => {
+router.get('/pedir', (request, response, next) => {
     let html = `
     <html>
     <head><meta charset="utf-8"></head><body>
@@ -78,6 +78,7 @@ router.post('/datos', (request, response, next) => {
     let orden=`Nombre: ${nombre} \nDirección: ${dir}  \nCelular ${cel}`
     filesystem.writeFileSync('orden.txt',orden)
     response.send("Buenos días: " + request.body.nombre + " sus datos han sido guardados :)");
+
 });
 
 

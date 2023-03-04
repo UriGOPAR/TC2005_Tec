@@ -37,7 +37,7 @@ app.use((request, response, next) => {
     response.status(404);
     
     //Envía la respuesta al cliente
-    response.send('Lo sentimos, esta ruta no existe');
+    response.send('Lo sentimos, esta ruta no existe. ERROR 404');
 });
 
 app.listen(3000);
