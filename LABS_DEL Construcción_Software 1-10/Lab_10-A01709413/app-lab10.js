@@ -101,7 +101,7 @@ const server =http.createServer((request,response) => {
         response.end();
     } else {
         response.statusCode = 404;
-        response.write("Lo sentimos, de esos chilaquiles no tenemos");
+        response.write("Lo sentimos, esa página no se encuentra");
         response.end();
     }
 
