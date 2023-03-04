@@ -7,8 +7,10 @@ const server =http.createServer((request,response) => {
         response.write('<!DOCTYPE html>');
         response.write('<html>');
         response.write('<head><meta charset="utf-8"></head><body>');
-        response.write("<h1>Perritos</h1>");
+        response.write("<h1>Perritos</h1>"); 
         response.write('<a href="/adoptar">Adoptar al perrito</a>');
+        response.write('<br>')
+        response.write('<a href="/nosotros">Conce más de nosotros</a>')
         response.end();
 
     }   else if (request.url === "/adoptar" && request.method === "GET") {
@@ -39,6 +41,7 @@ const server =http.createServer((request,response) => {
         response.write('<input type="text" id="info" name="info"><br><br>');
 
         response.write('<input type="submit" value="Adoptar">');
+        response.write('<a href="/">Volver a la principal</a>')
 
         response.write("</form>");
         response.write('</body></html>');
@@ -83,12 +86,19 @@ const server =http.createServer((request,response) => {
                 response.write("Gracias por adoptar :)");
                 response.write('<img alt="Chihuahua" src="https://i.ytimg.com/vi/124ouDf3Dg0/maxresdefault.jpg">');
                 return response.end();
+                
             }
             
         });
-    }else if(request.url ){
-
-        
+    }else if(request.url === "/nosotros" ){
+        response.setHeader('Content-Type', 'text/html');
+        response.write('<!DOCTYPE html>');
+        response.write('<html>');
+        response.write('<head><meta charset="utf-8"></head><body>');
+        response.write("<h1>Sobre mí</h1>");
+        response.write("<footer>Uri Jared Gopar Morales_A01709413 <br> Correo: A01709413@tec.mx <br> Editor: Visual Studio Code <br> Link del editor:https://code.visualstudio.com/ </footer>")
+        response.write('<a href="/">Volver a la principal</a>')
+        response.end();
     } else {
         response.statusCode = 404;
         response.write("Lo sentimos, de esos chilaquiles no tenemos");
