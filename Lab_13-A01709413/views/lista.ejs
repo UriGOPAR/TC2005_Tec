@@ -1,6 +1,10 @@
 <%- include('includes/head.ejs') %>
 
-<h1 class="title">Razas de perros</h1>
+<h1 class="title">Perros registrados</h1>
+
+<a href="/perros/nuevo" class="button is-link is-rounded">Registrar perro</a>
+
+<br><br>
 
 <% if (razas.length > 0) { %>
     <div class="columns">
@@ -27,7 +31,7 @@
                             </div>
                             <div class="media-content">
                                 <p class="title is-4"><%= raza.raza %></p>
-                                <p class="subtitle is-6"><%= raza.handle %></p>
+                                <p class="subtitle is-6">@<%= raza.nombre %></p>
                             </div>
                         </div>
                     
@@ -45,5 +49,7 @@
 <% } else { %>
     <h1>No hay razas registradas</h1>
 <% } %>   
+
+<a href="/perros/nuevo" class="button is-link is-rounded">Registrar perro</a>
 
 <%- include('includes/foot.ejs') %>

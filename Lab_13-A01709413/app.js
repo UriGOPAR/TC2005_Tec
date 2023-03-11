@@ -26,6 +26,9 @@ app.use('/hola', (request, response, next) => {
     response.send('Hola desde la ruta /hola');
 });
 
+const rutasOrdenar = require('./routes/ordenar.routes');
+app.use('/ordenar',rutasOrdenar);
+
 const rutasPerros = require('./routes/perros.routes');
 
 app.use('/perros', rutasPerros);
@@ -35,6 +38,7 @@ const hockeyRutas = require('./routes/hockey.routes');
 app.use('/hockey', hockeyRutas);
 
 const rutasChilaquiles = require('./routes/chilaquiles.routes');
+const { runInContext } = require('vm');
 
 app.use('/chilaquiles', rutasChilaquiles);
 
