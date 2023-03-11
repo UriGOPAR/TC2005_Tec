@@ -5,7 +5,6 @@ const path = require('path');
 const app = express();
 
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.set('view engine', 'ejs');
@@ -28,6 +27,9 @@ app.use('/hola', (request, response, next) => {
 
 const rutasOrdenar = require('./routes/ordenar.routes');
 app.use('/ordenar',rutasOrdenar);
+
+const rutasSobremi=require('./routes/sobremi.routes');
+app.use('/sobremi',rutasSobremi);
 
 const rutasPerros = require('./routes/perros.routes');
 
