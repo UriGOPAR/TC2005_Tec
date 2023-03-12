@@ -4,13 +4,6 @@ exports.getConoceme =(request,response,next)=>{
     <head><meta charset="utf-8"></head><body>
     <h1>Sobre mí</h1>
     <footer>Uri Jared Gopar Morales_A01709413 <br> Correo: A01709413@tec.mx <br> Editor: Visual Studio Code <br> Link del editor:https://code.visualstudio.com/ </footer>
-    <br>
-    <br>
-    <h1>PREGUNTAS LAB_13</h1>
-    <p>¿Qué beneficios encuentro en el MVC</p>
-    <p>Los beneficios que encuentro son para que el codigo este más ordenado, No codigo espaguetti. Si existe un problema es una manera más rapida de saber en donde se encuentra este, para que mas personas puedan interpretar lo que hace el código</p>
-    <p>¿Encuentras alguna desventaja?</p>
-    <p>Sí, la desventaja que yo encuentro es que tenemos muchas carpetas, lo cual se vuelve tedioso, y debes de tener mucho cuidado con ver que llamas</p>
     <a href="../ordenar/pedir">Volver a la principal</a>
     <br>
     <a href="/sobremi/bandas">Conoce de mis bandas favoritas</a>
