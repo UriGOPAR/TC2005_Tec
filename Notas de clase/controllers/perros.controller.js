@@ -51,7 +51,7 @@ exports.listar = (request, response, next) => {
         request.session.mensaje = '';
     }
 
-    Perro.fetchAll()
+    Perro.fetch(request.params.id)
     .then(([rows, fieldData]) => {
         console.log(rows);
         
