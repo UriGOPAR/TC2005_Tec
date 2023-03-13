@@ -41,13 +41,11 @@ const rutasPerros = require('./routes/perros.routes');
 
 app.use('/perros', rutasPerros);
 
-const hockeyRutas = require('./routes/hockey.routes');
+const rutasPeliculas = require('./routes/peliculas.routes');
 
-app.use('/hockey', hockeyRutas);
+app.use('/peliculas', rutasPeliculas);
 
-const rutasChilaquiles = require('./routes/chilaquiles.routes');
 
-app.use('/chilaquiles', rutasChilaquiles);
 
 app.use((request, response, next) => {
     console.log("Tercer middleware");

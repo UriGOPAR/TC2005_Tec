@@ -33,21 +33,10 @@ app.use('/hola', (request, response, next) => {
     response.send('Hola desde la ruta /hola');
 });
 
-const rutasUsuarios = require('./routes/usuarios.routes');
-
-app.use('/usuarios', rutasUsuarios);
-
 const rutasPerros = require('./routes/perros.routes');
 
 app.use('/perros', rutasPerros);
 
-const hockeyRutas = require('./routes/hockey.routes');
-
-app.use('/hockey', hockeyRutas);
-
-const rutasChilaquiles = require('./routes/chilaquiles.routes');
-
-app.use('/chilaquiles', rutasChilaquiles);
 
 app.use((request, response, next) => {
     console.log("Tercer middleware");

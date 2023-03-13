@@ -1,21 +1,15 @@
-<%- include('includes/head.ejs') %>
+<%- include('includes/cab.ejs') %>
 
-<h1 class="title">Perros registrados</h1>
+<h1 class="title">Películas registradas</h1>
 
-<a href="/perros/nuevo" class="button is-link is-rounded">Registrar perro</a>
+<a href="/peliculas/nueva" class="button is-link is-rounded">Registrar película</a>
 
 <br><br>
 
-<% if (mensaje != '') { %>
-    <div class="notification is-info is-light">
-        <%= mensaje %>
-    </div>
-<% } %>
-
-<% if (razas.length > 0) { %>
+<% if (productoras.length > 0) { %>
     <div class="columns">
         <% let columns = 0; %>
-        <% for (let raza of razas) { %>
+        <% for (let productora of productoras) { %>
             <% if (columns % 4 == 0) { %>
     </div>
     <div class="columns">
@@ -25,27 +19,27 @@
                 <div class="card">
                     <div class="card-image">
                         <figure class="image is-4by3">
-                            <img src="<%= raza.imagen %>" alt="Placeholder image">
+                            <img src="<%= productora.imagen %>" alt="Placeholder image">
                         </figure>
                     </div>
                     <div class="card-content">
                         <div class="media">
                             <div class="media-left">
                                 <figure class="image is-48x48">
-                                    <img src="<%= raza.imagen %>" alt="Placeholder image">
+                                    <img src="<%= productora.imagen %>" alt="Placeholder image">
                                 </figure>
                             </div>
                             <div class="media-content">
-                                <p class="title is-4"><%= raza.raza %></p>
-                                <p class="subtitle is-6">@<%= raza.nombre %></p>
+                                <p class="title is-4"><%= productora.titulo %></p>
+                                <p class="subtitle is-6">@<%= productora.productora %></p>
                             </div>
                         </div>
                     
                         <div class="content">
-                            <%= raza.descripcion %> <a><%= raza.handle %></a>.
+                            <%= productora.descripcion %> <a><%= productora.handle %></a>.
                             <a href="#">#css</a> <a href="#">#responsive</a>
                             <br>
-                            <time datetime="<%= raza.created_at %>"><%= raza.created_at %></time>
+                            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
                         </div>
                     </div>
                 </div>
@@ -56,12 +50,12 @@
     <h1>No hay razas registradas</h1>
 <% } %>   
 
-<% if (ultimo_perro != '') { %>
+<% if (ultima_pelicula != '') { %>
     <div class="notification is-link is-light">
-        Último perro agregado: <%= ultimo_perro %>
+        Última pelicula agregada: <%= ultima_pelicula %>
     </div>
 <% } %>
 
-<a href="/perros/nuevo" class="button is-link is-rounded">Registrar perro</a>
+<a href="/peliculas/nueva" class="button is-link is-rounded">Registrar pelicula</a>
 
 <%- include('includes/foot.ejs') %>

@@ -1,7 +1,15 @@
 const Perro = require('../models/perros.model');
+const Raza = require('../models/razas.model');
 
 exports.get_nuevo = (request, response, next) => {
-    response.render('nuevo');
+
+    Raza.fetchAll()
+    .then(([rows, fieldData]) => {
+        response.render('nuevo', {
+            razas: rows,
+        });
+    }).catch(error => console.log(error));
+    
 };
 
 exports.post_nuevo = (request, response, next) => {
@@ -12,11 +20,17 @@ exports.post_nuevo = (request, response, next) => {
         descripcion: request.body.descripcion,
     });
 
-    perro.save();
+    perro.save()
+    .then(([rows, fieldData]) => {
 
-    request.session.ultimo_perro = perro.nombre;
+        request.session.mensaje = "El perro fue registrado exitosamente.";
 
-    response.redirect('/perros/');
+        request.session.ultimo_perro = perro.nombre;
+
+        response.redirect('/perros/');
+    })
+    .catch((error) => {console.log(error)});
+
 };
 
 exports.listar = (request, response, next) => {
@@ -30,8 +44,26 @@ exports.listar = (request, response, next) => {
 
     response.setHeader('Set-Cookie', 'consultas=' + consultas + '; HttpOnly');
 
-    response.render('lista', { 
-        razas: Perro.fetchAll(),
-        ultimo_perro: request.session.ultimo_perro || '', 
+    let mensaje = '';
+
+    if (request.session.mensaje) {
+        mensaje = request.session.mensaje;
+        request.session.mensaje = '';
+    }
+
+    Perro.fetchAll()
+    .then(([rows, fieldData]) => {
+        console.log(rows);
+        
+        response.render('lista', { 
+            razas: rows,
+            ultimo_perro: request.session.ultimo_perro || '', 
+            mensaje: mensaje,
+        });
+    })
+    .catch(err => {
+        console.log(err);
     });
+
+    
 };
