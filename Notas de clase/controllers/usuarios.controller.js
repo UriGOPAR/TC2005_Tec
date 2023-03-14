@@ -1,4 +1,5 @@
 const Usuario = require('../models/usuarios.model');
+const bcrypt = require('bcryptjs');
 
 exports.get_login = (request, response, next) => {
 
@@ -18,7 +19,18 @@ exports.post_login = (request, response, next) => {
     Usuario.fetchOne(request.body.username)
     .then(([rows, fieldData]) => {
         if (rows.length == 1) {
-            response.redirect('/perros');
+            console.log(rows);
+            bcrypt.compare(request.body.password, rows[0].password)
+            .then((doMatch) => {
+                if(doMatch) {
+                    response.redirect('/perros');
+                } else {
+                    request.session.mensaje = "Usuario y/o contraseña incorrectos";
+                    response.redirect('/usuarios/login');
+                }
+            })
+            .catch((error) => console.log(error));
+            
         } else {
             request.session.mensaje = "Usuario y/o contraseña incorrectos";
             response.redirect('/usuarios/login');
