@@ -2,7 +2,9 @@
 
 <h1 class="title">Perros registrados</h1>
 
-<a href="/perros/nuevo" class="button is-link is-rounded">Registrar perro</a>
+<% if (privilegios.indexOf('crear_perros') >= 0) { %>
+    <a href="/perros/nuevo" class="button is-link is-rounded">Registrar perro</a>
+<% } %>
 
 <br><br>
 

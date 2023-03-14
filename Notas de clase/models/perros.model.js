@@ -1,70 +1,74 @@
-const db = require('../util/database');
+const Perro = require('../models/perros.model');
+const Raza = require('../models/razas.model');
 
-/*
-const perros = [
-    { 
-        nombre: 'Spike',
-        raza: "Husky",
-        imagen: "https://m.media-amazon.com/images/I/51+z8sSyAuL.jpg", 
-        descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris."
-    },
-    { 
-        nombre: "Chilakil",
-        raza: 'Chihuahua',
-        imagen: "https://bulma.io/images/placeholders/1280x960.png", 
-        descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris."
-    },
-    { 
-        nombre: 'Pugberto',
-        raza: "Pug",
-        imagen: "https://bulma.io/images/placeholders/1280x960.png", 
-        descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris."
-    } 
-]; */
+exports.get_nuevo = (request, response, next) => {
 
-module.exports = class Perro {
+    Raza.fetchAll()
+    .then(([rows, fieldData]) => {
+        response.render('nuevo', {
+            razas: rows,
+            isLoggedIn: request.session.isLoggedIn || false,
+            nombre: request.session.nombre || '',
+        });
+    }).catch(error => console.log(error));
+    
+};
 
-    //Constructor de la clase. Sirve para crear un nuevo objeto, y en él se definen las propiedades del modelo
-    constructor(nuevo_perro) {
-        this.nombre = nuevo_perro.nombre || 'Firulais';
-        this.raza = nuevo_perro.raza || 'Delmer';
-        this.imagen = nuevo_perro.imagen || 'https://bulma.io/images/placeholders/1280x960.png';
-        this.descripcion = nuevo_perro.descripcion || 'Un perro muy cool';
+exports.post_nuevo = (request, response, next) => {
+
+    const perro = new Perro({
+        nombre: request.body.nombre,
+        raza: request.body.raza,
+        descripcion: request.body.descripcion,
+    });
+
+    perro.save()
+    .then(([rows, fieldData]) => {
+
+        request.session.mensaje = "El perro fue registrado exitosamente.";
+
+        request.session.ultimo_perro = perro.nombre;
+
+        response.redirect('/perros/');
+    })
+    .catch((error) => {console.log(error)});
+
+};
+
+exports.listar = (request, response, next) => {
+
+    //Crear variable para que si no hay cookie se cuente con un string para hacer el split
+    let cookies = request.get('Cookie') || '';
+
+    let consultas = cookies.split(';')[0].split('=')[1] || 0;
+
+    consultas++;
+
+    response.setHeader('Set-Cookie', 'consultas=' + consultas + '; HttpOnly');
+
+    let mensaje = '';
+
+    if (request.session.mensaje) {
+        mensaje = request.session.mensaje;
+        request.session.mensaje = '';
     }
 
-    //Este método servirá para guardar de manera persistente el nuevo objeto. 
-    save() {
-        return db.execute(`
-            INSERT INTO perros (nombre, imagen, descripcion, idRaza) 
-            values (?, ?, ?, ?)
-        `, [this.nombre, this.imagen, this.descripcion, this.raza]);
-    }
+    Perro.fetch(request.params.id)
+    .then(([rows, fieldData]) => {
+        console.log(rows);
+        
+        response.render('lista', { 
+            razas: rows,
+            ultimo_perro: request.session.ultimo_perro || '', 
+            mensaje: mensaje,
+            isLoggedIn: request.session.isLoggedIn || false,
+            nombre: request.session.nombre || '',
+            privilegios: request.session.privilegios || [],
+        });
+    })
+    .catch(err => {
+        console.log(err);
+    });
 
-    //Este método servirá para devolver los objetos del almacenamiento persistente.
-    static fetchAll() {
-        return db.execute(
-            `SELECT p.id, p.nombre, p.imagen, p.descripcion, p.created_at, r.nombre as raza 
-            FROM perros p, razas r
-            WHERE p.idRaza = r.id
-            `
-        );
-    }
-
-    static fetchOne(id) {
-        return db.execute(
-            `SELECT p.id, p.nombre, p.imagen, p.descripcion, p.created_at, r.nombre as raza 
-            FROM perros p, razas r
-            WHERE p.idRaza = r.id AND p.id = ?
-            `, [id]
-        );
-    }
-
-    static fetch(id) {
-        if (id) {
-            return Perro.fetchOne(id);
-        } else {
-            return Perro.fetchAll();
-        }
-    }
-
-}
+    
+};
