@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const session = require('express-session');
+const isAuth = require('./util/is-auth');
 
 const app = express();
 
@@ -39,7 +40,7 @@ app.use('/usuarios', rutasUsuarios);
 
 const rutasPerros = require('./routes/perros.routes');
 
-app.use('/perros', rutasPerros);
+app.use('/perros', isAuth, rutasPerros);
 
 
 app.use((request, response, next) => {
