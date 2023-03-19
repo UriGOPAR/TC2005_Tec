@@ -1,4 +1,4 @@
-const db =require('../util/database');
+const db = require('../util/database');
     /*
     { 
         titulo: 'The Lord Of the Rings',
@@ -62,11 +62,16 @@ module.exports = class Pelicula {
 
     //Este método servirá para guardar de manera persistente el nuevo objeto. 
     save() {
-        return db.execute(
-    
-           `SELECT pe.id, pe.titulo, pe.imagen, pe.descripcion, pe.created_at, pr.nombre as productora 
-            FROM peliculas p, productoras pr
-            WHERE pe.idProductora = pr.id
+        return db.execute( `
+        INSERT INTO peliculas (titulo, imagen, descripcion, idProductora) 
+        values (?, ?, ?, ?)
+    `, [this.titulo, this.imagen, this.descripcion, this.productora]);
+}
+static fetchAll(){
+    return db.execute(
+        `SELECT pe.id, pe.titulo, pe.imagen, pe.descripcion, pe.created_at, pr.nombre as productora 
+        FROM peliculas pe, productoras pr
+        WHERE pe.idProductora = pr.id
             `
         );
     }
