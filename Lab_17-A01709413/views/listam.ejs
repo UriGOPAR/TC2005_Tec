@@ -5,6 +5,11 @@
 <a href="/peliculas/nueva" class="button is-link is-rounded">Registrar película</a>
 
 <br><br>
+<% if (mensaje != '') { %>
+    <div class="notification is-info is-light">
+        <% mensaje %>
+    </div>
+<% } %>
 
 <% if (productoras.length > 0) { %>
     <div class="columns">
@@ -47,7 +52,7 @@
         <% } %>
     </div>
 <% } else { %>
-    <h1>No hay razas registradas</h1>
+    <h1>No hay productoras registradas</h1>
 <% } %>   
 
 <% if (ultima_pelicula != '') { %>

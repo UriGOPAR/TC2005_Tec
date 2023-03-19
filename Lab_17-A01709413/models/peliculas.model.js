@@ -1,4 +1,5 @@
-const peliculas = [
+const db =require('../util/database');
+    /*
     { 
         titulo: 'The Lord Of the Rings',
         productora: "New Line Cinema", 
@@ -47,7 +48,7 @@ const peliculas = [
         imagen: "https://bulma.io/images/placeholders/1280x960.png", 
         descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris."
     }  
-];
+];*/
 
 module.exports = class Pelicula {
 
@@ -56,17 +57,36 @@ module.exports = class Pelicula {
         this.titulo = nueva_pelicula.titulo || 'Nueva_Pelicula';
         this.productora= nueva_pelicula.productora || 'Delmer';
         this.imagen = nueva_pelicula.imagen || 'https://bulma.io/images/placeholders/1280x960.png';
-        this.descripcion = nueva_pelicula.descripcion || '';
+        this.descripcion = nueva_pelicula.descripcion || 'Descripcion';
     }
 
     //Este método servirá para guardar de manera persistente el nuevo objeto. 
     save() {
-        peliculas.push(this);
+        return db.execute(
+    
+           `SELECT pe.id, pe.titulo, pe.imagen, pe.descripcion, pe.created_at, pr.nombre as productora 
+            FROM peliculas p, productoras pr
+            WHERE pe.idProductora = pr.id
+            `
+        );
     }
 
-    //Este método servirá para devolver los objetos del almacenamiento persistente.
-    static fetchAll() {
-        return peliculas;
+    static fetchOne(id){
+        return db.execute(
+            `SELECT pe.id, pe.titulo, pe.imagen, pe.descripcion, pe.created_at, pr.nombre as productora 
+            FROM peliculas pe, productoras pr
+            WHERE pe.idProductora = pr.id AND pe.id = ?
+            `, [id]
+
+        );
+    }
+
+    static fetch(id){
+        if (id){
+            return Pelicula.fetchOne(id);
+        }else{
+            return Pelicula.fetchAll();
+        }
     }
 
 }

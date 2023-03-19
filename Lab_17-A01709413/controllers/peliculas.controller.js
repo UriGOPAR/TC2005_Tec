@@ -1,8 +1,14 @@
 const Pelicula = require('../models/peliculas.model');
+const Productora= require('../models/productoras.model');
 
 
 exports.get_nueva = (request, response, next) => {
-    response.render('nueva');
+    Productora.fetchAll()
+    .then(([rows, fieldData])=>{
+        response.render('nueva',{
+            productoras:rows,
+        });
+    }).catch(error=> console.log(error));
 };
 
 exports.post_nueva = (request, response, next) => {
@@ -13,11 +19,15 @@ exports.post_nueva = (request, response, next) => {
         descripcion: request.body.descripcion,
     });
 
-    pelicula.save();
+    pelicula.save()
+    .then(([rows, fieldData])=> {
 
-    request.session.ultima_pelicula = pelicula.titulo;
+        request.session.mensaje="La película se agrego exitosamente";
+        request.session.ultima_pelicula = pelicula.titulo;
+        response.redirect('/peliculas/1');
 
-    response.redirect('/peliculas/1');
+    })
+    .catch((error)=>{console.log(error)});
 };
 
 exports.listara = (request, response, next) => {
@@ -30,9 +40,24 @@ exports.listara = (request, response, next) => {
     consultas++;
 
     response.setHeader('Set-Cookie', 'consultas=' + consultas + '; HttpOnly');
+    let mensaje='';
 
-    response.render('listam', { 
-        productoras: Pelicula.fetchAll(),
-        ultima_pelicula: request.session.ultima_pelicula || '', 
+    if (request.session.mensaje){
+        mensaje=request.session.mensaje;
+        request.session.mensaje=''; 
+    }
+    Pelicula.fetch(request.params.id)
+    .then(([rows,fieldData])=> {
+        console.log(rows);
+
+        response.render('listam', {
+            productoras:rows,
+            ultima_pelicula:request.session.ultima_pelicula || '',
+            mensaje: mensaje,
+        });
+    })
+    .catch(err => {
+        console.log(err);
     });
+
 };
