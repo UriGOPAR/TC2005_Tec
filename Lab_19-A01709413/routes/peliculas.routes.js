@@ -2,11 +2,12 @@ const express = require('express');
 
 const router = express.Router();
 
+const hasCreate = require('../util/has-create');
 const peliculasController = require('../controllers/peliculas.controller');
 
-router.get('/nueva', peliculasController.get_nueva);
+router.get('/nueva', hasCreate, peliculasController.get_nueva);
 
-router.post('/nueva', peliculasController.post_nueva);
+router.post('/nueva', hasCreate, peliculasController.post_nueva);
 
 router.get('/:id', peliculasController.listara);
 
