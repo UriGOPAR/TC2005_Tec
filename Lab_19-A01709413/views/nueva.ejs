@@ -1,0 +1,26 @@
+<%- include('includes/cab.ejs') %>
+
+<h1 class="title">Registrar nueva película</h1>
+
+<form action="/peliculas/nueva" method="POST">
+
+    <label for="titulo">Título:</label>
+    <input required name="titulo" id="titulo" class="input is-rounded" type="text" placeholder="MOVIE">
+    <br><br>
+    <label for="productora">Productora:</label>
+    <div class="select is-primary">
+        <select name="productora" id="productora">
+            <% for (let productora of productoras) { %>
+                <option value="<%= productora.id %>"><%= productora.nombre %> </option> 
+            <% } %>
+        </select>
+    </div>
+    <br><br>
+    <label for="descripcion">Descripcion:</label>
+    <input name="descripcion" id="descripcion" class="input is-rounded" type="text" placeholder="Buena">
+    <br><br>
+    <input class="button is-rounded is-success" type="submit" value="Registrar">
+
+</form>
+
+<%- include('includes/foot.ejs') %>     
