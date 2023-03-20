@@ -3,6 +3,7 @@
 <h1 class="title">Registrar nueva película</h1>
 
 <form action="/peliculas/nueva" method="POST">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
 
     <label for="titulo">Título:</label>
     <input required name="titulo" id="titulo" class="input is-rounded" type="text" placeholder="MOVIE">
