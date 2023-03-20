@@ -1,5 +1,6 @@
 const db = require('../util/database');
     /*
+const peliculas =[
     { 
         titulo: 'The Lord Of the Rings',
         productora: "New Line Cinema", 
@@ -69,7 +70,7 @@ module.exports = class Pelicula {
 }
 static fetchAll(){
     return db.execute(
-        `SELECT pe.id, pe.titulo, pe.imagen, pe.descripcion, pe.created_at, pr.nombre as productora 
+        `SELECT pe.id, pe.titulo, pe.imagen, pe.descripcion,pr.nombre as productora 
         FROM peliculas pe, productoras pr
         WHERE pe.idProductora = pr.id
             `
@@ -78,7 +79,7 @@ static fetchAll(){
 
     static fetchOne(id){
         return db.execute(
-            `SELECT pe.id, pe.titulo, pe.imagen, pe.descripcion, pe.created_at, pr.nombre as productora 
+            `SELECT pe.id, pe.titulo, pe.imagen, pe.descripcion,pr.nombre as productora 
             FROM peliculas pe, productoras pr
             WHERE pe.idProductora = pr.id AND pe.id = ?
             `, [id]

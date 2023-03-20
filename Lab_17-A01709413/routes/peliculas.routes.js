@@ -8,7 +8,7 @@ router.get('/nueva', peliculasController.get_nueva);
 
 router.post('/nueva', peliculasController.post_nueva);
 
-router.get('/:id', peliculasController.listara);
+router.get('/: id', peliculasController.listara);
 
 router.get('/1', peliculasController.listara);
 

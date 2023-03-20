@@ -24,7 +24,9 @@ exports.post_nueva = (request, response, next) => {
     .then(([rows, fieldData]) => {
 
         request.session.mensaje="La película se agrego exitosamente";
+
         request.session.ultima_pelicula = pelicula.titulo;
+        
         response.redirect('/peliculas/1');
 
     })
@@ -53,7 +55,7 @@ exports.listara = (request, response, next) => {
         console.log(rows);
 
         response.render('listam', {
-            productoras:rows,
+            productoras: rows,
             ultima_pelicula:request.session.ultima_pelicula || '',
             mensaje: mensaje,
         });
