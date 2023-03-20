@@ -27,65 +27,51 @@ exports.post_login = (request, response, next) => {
                 if(doMatch) {
                     request.session.isLoggedIn = true;
                     request.session.nombre = rows[0].nombre;
-                    Usuario.fetchPrivilegios(rows[0].username)
-                    .then(([consulta_privilegios, fieldData]) => {
-                        console.log(consulta_privilegios);
+                    return request.session.save(err => {
+                        response.redirect('/peliculas/1');
+                    });
+                    
+                } else {
+                    request.session.mensaje = "Usuario y/o contraseña incorrectos";
+                    response.redirect('/usuarios/login');
+                }
+            })
+            .catch((error) => console.log(error));
 
-                        const privilegios = [];
-                        for(let privilegio of consulta_privilegios) {
-                            privilegios.push(privilegio.nombre);
-                        }
+        } else {
+            request.session.mensaje = "Usuario y/o contraseña incorrectos";
+            response.redirect('/usuarios/login');
+        }
+    })
+    .catch((error) => {
+        console.log(error);
+    });
 
-                        request.session.privilegios = privilegios
-                        console.log(request.session.privilegios);
+};
 
-                        return request.session.save(err => {
-                            response.redirect('/perros');
-                        });
-                    })
-                    .catch((error) => {console.log(error)})
-                     
-                 } else {
-                     request.session.mensaje = "Usuario y/o contraseña incorrectos";
-                     response.redirect('/usuarios/login');
-                 }
-             })
-             .catch((error) => console.log(error));
- 
-         } else {
-             request.session.mensaje = "Usuario y/o contraseña incorrectos";
-             response.redirect('/usuarios/login');
-         }
-     })
-     .catch((error) => {
-         console.log(error);
-     });
- 
- };
- 
- 
- exports.get_signup = (request, response, next) => {
-     response.render('signup', {
-         isLoggedIn: request.session.isLoggedIn || false,
-         nombre: request.session.nombre || '',
-     });
- };
- 
- exports.post_signup = (request, response, next) => {
-     const usuario = new Usuario({
-         nombre: request.body.nombre,
-         username: request.body.username,
-         password: request.body.password,
-     });
- 
-     usuario.save()
-     .then(([rows, fieldData]) => {
-         response.redirect('/usuarios/login');
-     }).catch((error) => {console.log(error)});
- };
- 
- exports.logout = (request, response, next) => {
-     request.session.destroy(() => {
-         response.redirect('/usuarios/login'); //Este código se ejecuta cuando la sesión se elimina.
-     });
- };
+
+exports.get_signup = (request, response, next) => {
+    response.render('signup', {
+        isLoggedIn: request.session.isLoggedIn || false,
+        nombre: request.session.nombre || '',
+    });
+};
+
+exports.post_signup = (request, response, next) => {
+    const usuario = new Usuario({
+        nombre: request.body.nombre,
+        username: request.body.username,
+        password: request.body.password,
+    });
+
+    usuario.save()
+    .then(([rows, fieldData]) => {
+        response.redirect('/usuarios/login');
+    }).catch((error) => {console.log(error)});
+};
+
+exports.logout = (request, response, next) => {
+    request.session.destroy(() => {
+        response.redirect('/usuarios/login'); //Este código se ejecuta cuando la sesión se elimina.
+    });
+};
