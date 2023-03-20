@@ -1,0 +1,9 @@
+¿Qué ventajas tiene escribir el código SQL únicamente en la capa del modelo?
+La ventaja es que con forme uno vaya escribiendo el codigo puede ir visualizando la lógica que estos llevan. Y puedes ir checando la BD tiene sentido o no. 
+Y otra ventaja es que en esta carpeta unicamente va a contar con el backend el cuál contiene todo la lógica de datos
+
+¿Qué es el SQL injection y cómo se puede prevenir?
+Es una vulnerabilidad de la seguridad en la Web, la cuál la expone a ataques. Permite a los hackers poder visualisar toda la información y los puede modificar. 
+Para evitar esto puedemos ocupar con una herramienta escaner, la cual elabora pruebas contra cada punto de entrada de la aplicación. También por el uso de WAF el cuál filtra la inyección SQL y otras amenazas
+
+LINK:https://www.one.com/es/seguridad-de-su-web/que-es-sql-injection

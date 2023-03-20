@@ -1,0 +1,7 @@
+¿Qué otras formas de autentificación existen?
+ Existen diversas formas de autentificación como:
+ Rostro, Voz, Huella
+ Dirreción IP, GPS.
+ PIN
+ Contraseña 
+ Codigós OTP
