@@ -2,8 +2,8 @@
 
 <h1 class="title">Películas registradas</h1>
 
-<% if (privilegios.indexOf('crear_perros') >= 0) { %>
-    <a href="/peliculas/nueva" class="button is-link is-rounded">Registrar perro</a>
+<% if (privilegios.indexOf('crear_peliculas') >= 0) { %>
+    <a href="/peliculas/nueva" class="button is-link is-rounded">Registrar peliculas</a>
 +<% } %>
 
 <br><br>
@@ -62,7 +62,5 @@
         Última pelicula agregada: <%= ultima_pelicula %>
     </div>
 <% } %>
-
-<a href="/peliculas/nueva" class="button is-link is-rounded">Registrar pelicula</a>
 
 <%- include('includes/foot.ejs') %>
