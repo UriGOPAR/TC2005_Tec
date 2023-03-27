@@ -1,6 +1,44 @@
 const Perro = require('../models/perros.model');
 const Raza = require('../models/razas.model');
 
+exports.get_editar = (request, response, next) => {
+
+    Perro.fetchOne(request.params.id)
+    .then(([perros_consulta, fieldData]) => {
+        if (perros_consulta.length == 1) {
+
+            const perro = new Perro({
+                id: perros_consulta[0].id,
+                nombre: perros_consulta[0].nombre,
+                raza: perros_consulta[0].idRaza,
+                imagen: perros_consulta[0].imagen,
+                descripcion: perros_consulta[0].descripcion
+            });
+
+            Raza.fetchAll()
+            .then(([rows, fieldData]) => {
+                response.render('nuevo', {
+                    razas: rows,
+                    isLoggedIn: request.session.isLoggedIn || false,
+                    nombre: request.session.nombre || '',
+                    perro: perro || false,
+                });
+            }).catch(error => console.log(error));
+
+        } else {
+            return response.redirect('/perros/nuevo');
+        }
+    })
+    .catch(error => console.log(error));
+
+};
+
+exports.post_editar = (request, response, next) => {
+    console.log("Datos para editar");
+    console.log(request.body);
+
+};
+
 exports.get_nuevo = (request, response, next) => {
 
     Raza.fetchAll()
@@ -9,12 +47,15 @@ exports.get_nuevo = (request, response, next) => {
             razas: rows,
             isLoggedIn: request.session.isLoggedIn || false,
             nombre: request.session.nombre || '',
+            perro: false,
         });
     }).catch(error => console.log(error));
     
 };
 
 exports.post_nuevo = (request, response, next) => {
+
+    console.log(request.file);
 
     const perro = new Perro({
         nombre: request.body.nombre,
