@@ -57,7 +57,7 @@ module.exports = class Pelicula {
         this.id=nueva_pelicula.id || 0;
         this.titulo = nueva_pelicula.titulo || 'Nueva_Pelicula';
         this.productora= nueva_pelicula.productora || 1;
-        this.imagen = nueva_pelicula.imagen || 'https://bulma.io/images/placeholders/1280x960.png';
+        this.imagen = nueva_pelicula.imagen || 'movie.jpeg';
         this.descripcion = nueva_pelicula.descripcion || 'Descripcion';
     }
 

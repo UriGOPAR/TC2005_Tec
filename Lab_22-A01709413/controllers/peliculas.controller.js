@@ -55,6 +55,7 @@ exports.post_nueva = (request, response, next) => {
         titulo: request.body.titulo,
         productora: request.body.productora,
         descripcion: request.body.descripcion,
+        imagen: request.file.fielname,
     });
 
     pelicula.save()
