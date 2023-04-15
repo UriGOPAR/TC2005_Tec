@@ -79,7 +79,7 @@ static fetchAll(){
 
     static fetchOne(id){
         return db.execute(
-            `SELECT pe.id, pe.titulo, pe.imagen, pe.descripcion,p.idProductora, pr.nombre as productora 
+            `SELECT pe.id, pe.titulo, pe.imagen, pe.descripcion,pe.idProductora, pr.nombre as productora 
             FROM peliculas pe, productoras pr
             WHERE pe.idProductora = pr.id AND pe.id = ?
             `, [id]
