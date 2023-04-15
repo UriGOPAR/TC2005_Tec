@@ -2,11 +2,11 @@
 
 <% if(pelicula) { %>
     <h1 class="title">Editar Pelicula</h1>
-    <form action="/peliculas/editar" method="POST">
+    <form action="/peliculas/editar" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<%pelicula.id >">
 <% } else { %>
     <h1 class="title">Registrar nueva película</h1>
-    <form action="/peliculas/nuevo" method="POST">
+    <form action="/peliculas/nueva" method="POST" enctype="multipart/form-data">
 <% } %>
 
     <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
@@ -28,7 +28,10 @@
     <br><br>
     <label for="descripcion">Descripcion:</label>
     <input name="descripcion" id="descripcion" class="input is-rounded" type="text" placeholder="Buena"
-        value="<% if(pelicula) { %> <%=pelicula.descripcion %> <%} %>">
+        value="<% if(pelicula) { %> <%=pelicula.descripcion %><% } %>">
+    <br><br>
+    <label for="imagen">Imagen:</label>
+    <input name="imagen" id="imagen" class="input is-rounded " type="file">
     <br><br>
 <% if(pelicula != '') { %> 
     <input class="button is-rounded is-success" type="submit" value="Actualizar">

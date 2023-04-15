@@ -49,6 +49,8 @@ exports.get_nueva = (request, response, next) => {
 
 exports.post_nueva = (request, response, next) => {
 
+    console.log(request.file);
+
     const pelicula = new Pelicula({
         titulo: request.body.titulo,
         productora: request.body.productora,
