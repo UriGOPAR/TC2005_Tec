@@ -2,17 +2,9 @@
 
 <h1 class="title">Perros registrados</h1>
 
-<% if (privilegios.indexOf('crear_perros') >= 0) { %>
-    <a href="/perros/nuevo" class="button is-link is-rounded">Registrar perro</a>
-<% } %>
+<a href="/perros/nuevo" class="button is-link is-rounded">Registrar perro</a>
 
 <br><br>
-
-<% if (mensaje != '') { %>
-    <div class="notification is-info is-light">
-        <%= mensaje %>
-    </div>
-<% } %>
 
 <% if (razas.length > 0) { %>
     <div class="columns">
@@ -27,14 +19,14 @@
                 <div class="card">
                     <div class="card-image">
                         <figure class="image is-4by3">
-                            <img src="/uploads/<%= raza.imagen %>" alt="Placeholder image">
+                            <img src="<%= raza.imagen %>" alt="Placeholder image">
                         </figure>
                     </div>
                     <div class="card-content">
                         <div class="media">
                             <div class="media-left">
                                 <figure class="image is-48x48">
-                                    <img src="/uploads/<%= raza.imagen %>" alt="Placeholder image">
+                                    <img src="<%= raza.imagen %>" alt="Placeholder image">
                                 </figure>
                             </div>
                             <div class="media-content">
@@ -47,11 +39,7 @@
                             <%= raza.descripcion %> <a><%= raza.handle %></a>.
                             <a href="#">#css</a> <a href="#">#responsive</a>
                             <br>
-                            <time datetime="<%= raza.created_at %>"><%= raza.created_at %></time>
-                            <% if (privilegios.indexOf('crear_perros') >= 0) { %>
-                                <br><br>
-                                <a href="/perros/editar/<%= raza.id %>" class="button is-primary is-rounded">Editar</a>
-                            <% } %>
+                            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
                         </div>
                     </div>
                 </div>
@@ -68,8 +56,6 @@
     </div>
 <% } %>
 
-<% if (privilegios.indexOf('crear_perros') >= 0) { %>
-    <a href="/perros/nuevo" class="button is-link is-rounded">Registrar perro</a>
-<% } %>
+<a href="/perros/nuevo" class="button is-link is-rounded">Registrar perro</a>
 
 <%- include('includes/foot.ejs') %>

@@ -24,11 +24,18 @@ const perros = [
 
 module.exports = class Perro {
 
-    //Constructor de la clase. Sirve para crear un nuevo objeto, y en él se definen las propiedades del modelo
+    /* Constructor de la clase. Sirve para crear un nuevo objeto, y en él se definen las propiedades del modelo
+        @param id
+        @param nombre
+        @param raza
+        @param imagen
+        @param descripcion
+    */
     constructor(nuevo_perro) {
+        this.id = nuevo_perro.id || 0;
         this.nombre = nuevo_perro.nombre || 'Firulais';
-        this.raza = nuevo_perro.raza || 'Delmer';
-        this.imagen = nuevo_perro.imagen || 'https://bulma.io/images/placeholders/1280x960.png';
+        this.raza = nuevo_perro.raza || 1;
+        this.imagen = nuevo_perro.imagen || 'perros.jpg';
         this.descripcion = nuevo_perro.descripcion || 'Un perro muy cool';
     }
 
@@ -52,7 +59,7 @@ module.exports = class Perro {
 
     static fetchOne(id) {
         return db.execute(
-            `SELECT p.id, p.nombre, p.imagen, p.descripcion, p.created_at, r.nombre as raza 
+            `SELECT p.id, p.nombre, p.imagen, p.descripcion, p.idRaza, p.created_at, r.nombre as raza 
             FROM perros p, razas r
             WHERE p.idRaza = r.id AND p.id = ?
             `, [id]

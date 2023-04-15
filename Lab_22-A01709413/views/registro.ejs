@@ -1,0 +1,14 @@
+<%- include('includes/head.ejs') %>
+
+<h1 class="title">Registrar nuevo perro</h1>
+
+<form action="/ordenar/registro" method="POST">
+
+    <label for="raza">Raza:</label>
+    <input name="raza" id="raza" class="input is-rounded" type="text" placeholder="Firulais">
+    <br><br>
+    <input class="button is-rounded is-success" type="submit" value="Registrar">
+
+</form>
+
+<%- include('includes/foot.ejs') %>

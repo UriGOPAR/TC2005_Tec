@@ -4,7 +4,7 @@ const path = require('path');
 const session = require('express-session');
 const csrf = require('csurf');
 const isAuth = require('./util/is-auth');
-const multer = require('multer');
+const multer = require ('multer');
 
 const app = express();
 
@@ -17,13 +17,11 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.urlencoded({extended: false}));
-
-
 //fileStorage: Es nuestra constante de configuración para manejar el almacenamiento
 const fileStorage = multer.diskStorage({
     destination: (request, file, callback) => {
         //'uploads': Es el directorio del servidor donde se subirán los archivos 
-        callback(null, 'public/uploads');
+        callback(null, 'uploads');
     },
     filename: (request, file, callback) => {
         //aquí configuramos el nombre que queremos que tenga el archivo en el servidor, 
@@ -31,7 +29,7 @@ const fileStorage = multer.diskStorage({
         callback(null, new Date().toISOString() + '-' + file.originalname);
     },
 });
-
+    
 //En el registro, pasamos la constante de configuración y
 //usamos single porque es un sólo archivo el que vamos a subir, 
 //pero hay diferentes opciones si se quieren subir varios archivos. 
@@ -48,7 +46,6 @@ app.use((request, response, next) => {
     response.locals.csrfToken = request.csrfToken();
     next();
 });
-
 //Middleware
 app.use((request, response, next) => {
     console.log('Middleware!');
@@ -70,7 +67,12 @@ app.use('/usuarios', rutasUsuarios);
 
 const rutasPerros = require('./routes/perros.routes');
 
-app.use('/perros', isAuth, rutasPerros);
+app.use('/perros', rutasPerros);
+
+const rutasPeliculas = require('./routes/peliculas.routes');
+
+app.use('/peliculas', rutasPeliculas);
+
 
 
 app.use((request, response, next) => {
