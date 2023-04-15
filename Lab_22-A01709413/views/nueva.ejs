@@ -2,10 +2,11 @@
 
 <% if(pelicula) { %>
     <h1 class="title">Editar Pelicula</h1>
-    <form action="peliculas/editar" method="POST"></form>
+    <form action="/peliculas/editar" method="POST">
     <input type="hidden" name="id" value="<%pelicula.id >">
 <% } else { %>
-    <h1 class="title">Registrar nueva película</h1></form>
+    <h1 class="title">Registrar nueva película</h1>
+    <form action="/peliculas/nuevo" method="POST">
 <% } %>
 
     <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
