@@ -5,6 +5,7 @@ exports.get_editar = (request, response, next) => {
     Pelicula.fetchOne(request.params.id)
     .then(([peliculas_consulta, fieldData]) => {
         if (peliculas_consulta.length == 1) {
+            
             const pelicula = new Pelicula({
                 id: peliculas_consulta[0].id,
                 titulo: peliculas_consulta[0].titulo,
@@ -55,7 +56,7 @@ exports.post_nueva = (request, response, next) => {
         titulo: request.body.titulo,
         productora: request.body.productora,
         descripcion: request.body.descripcion,
-        imagen: request.file.fielname,
+        imagen: request.file.fielname,  
     });
 
     pelicula.save()
