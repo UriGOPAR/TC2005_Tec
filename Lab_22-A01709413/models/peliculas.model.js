@@ -43,5 +43,16 @@ static fetchAll(){
             return Pelicula.fetchAll();
         }
     }
+    static find(valor_busqueda) {
+        return db.execute(
+            `SELECT pe.id, pe.titulo, pe.imagen, pe.descripcion, pr.nombre as productora 
+            FROM peliculas pe,  productoras pr
+            WHERE pe.idProductora = pr.id 
+                AND (pe.titulo LIKE ? OR pe.descripcion LIKE ? OR pr.nombre LIKE ?)
+            `, 
+            [ '%' + valor_busqueda + '%', '%' + valor_busqueda + '%', 
+                '%' + valor_busqueda + '%']
+        );
+    }
 
 }

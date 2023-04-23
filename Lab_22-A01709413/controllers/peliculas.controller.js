@@ -1,6 +1,17 @@
 const Pelicula = require('../models/peliculas.model');
 const Productora= require('../models/productoras.model');
 
+exports.get_buscar=(request,response,next)=>{
+    Pelicula.find(request.params.valor_busqueda)
+    .then(([rows,fieldData])=>{
+        response.status(500).json({pelicas:rows});
+    })
+    .catch(error=>{
+        console.log(error);
+        response.status(500).json({message: "Internal Server Rrror"})
+    });
+};
+
 exports.get_editar = (request, response, next) => {
     Pelicula.fetchOne(request.params.id)
     .then(([peliculas_consulta, fieldData]) => {

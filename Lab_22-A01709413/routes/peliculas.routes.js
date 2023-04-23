@@ -6,6 +6,8 @@ const hasCreate = require ('../util/has-create');
 
 const peliculasController = require('../controllers/peliculas.controller');
 
+router.get('/buscar/:valor_busqueda', peliculasController.get_buscar);
+
 router.get('/editar/:id', hasCreate, peliculasController.get_editar);
 
 router.get('editar', hasCreate, peliculasController.get_nueva);
