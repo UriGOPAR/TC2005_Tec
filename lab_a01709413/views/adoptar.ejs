@@ -1,0 +1,25 @@
+<%- include('includes/head.ejs') %>
+<h1 class="title">Conoce los perritos que puedes adoptar</h1>
+<form action="/ordenar/adoptar" method="POST">
+
+<fieldset><legend>¿Cuál perrito te gustaría adoptar</legend>
+<div><input type="radio" id="labrador" name="razas" value="labrador" checked>
+<label for="labrador">Labrador</label></div>
+<div><input type="radio" id="pug" name="razas" value="pug">
+<label for="pug">Pug</label></div>
+<div><input type="radio" id="doberman" name="razas" value="doberman">
+<label for="doberman">Doberman</label></div>
+<div><input type="radio" id="chihuahua" name="razas" value="chihuahua">
+<label for="chihuahua">Chihuahua</label></div></fieldset><br>
+
+
+<a href="/ordenar/datos">Rellenar datos para adoptar </a>
+<br>
+
+<a href="/ordenar/registro">Agregar otro perro</a>
+<br>
+
+<a href="/ordenar/pedir">Volver a la principal</a>
+
+</form>
+

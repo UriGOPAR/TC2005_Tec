@@ -1,0 +1,13 @@
+¿En que consiste el control de acceso basado en roles?
+
+Este consiste en poder definir Roles, los cuales cumplan con diferentes funciones en nuestra página web, nos ayudan para tener un mejor control de nuestra aplicación y que solo una o un grupo de personas
+la puedan modificar mientras que los demás solo la pueden consultar.
+
+Investiguen y describan 2 sistemas, uno que aplique RBAC y uno que no.
+Un sistema que ocupa este RBAC puede ser en una tienda de ropa. debido a que los trabajadores solo pueden vender, consultar y realizar cambios de prendas. Sin embargo el administrador puede
+agregar más mercancía, darle precio a esta nueva mercancía.. etc
+
+Un sistema que no aplica es el de Wikipedia, ya que todas las personas podemos editar esta página.
+
+La desventaja más importante es que pues al no tener control todos pueden cambiar la información ya sea para bien o para mal, de esta manera puede borrar o consultar información privada lo cual es 
+muy peligroso. Por eso lo recomendable es siempre tener el RBAC para poder repartir funciones y que no todos podamos cambiar la página.

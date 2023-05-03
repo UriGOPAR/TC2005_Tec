@@ -1,0 +1,146 @@
+<%- include('includes/cab.ejs') %>
+
+<h1 class="title">Películas registradas</h1>
+
+<% if (privilegios.indexOf('crear_peliculas') >= 0) { %>
+    <a href="/peliculas/nueva" class="button is-link is-rounded">Registrar peliculas</a>
+<% } %>
+
+<br><br>
+<% if (mensaje != '') { %>
+    <div class="notification is-info is-light">
+        <% mensaje %>
+    </div>
+<% } %>
+
+<% if (productoras.length > 0) { %>
+    <div class="columns">
+        <% let columns = 0; %>
+        <% for (let productora of productoras) { %>
+            <% if (columns % 4 == 0) { %>
+    </div>
+    <div class="columns">
+            <% } %>
+            <% columns++; %>
+            <div class="column">
+                <div class="card">
+                    <div class="card-image">
+                        <figure class="image is-4by3">
+                            <img src="/uploads/<%= productora.imagen %>" alt="Placeholder image">
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-left">
+                                <figure class="image is-48x48">
+                                    <img src="/uplads/<%= productora.imagen %>" alt="Placeholder image">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <p class="title is-4"><%= productora.titulo %></p>
+                                <p class="subtitle is-6">@<%= productora.productora %></p>
+                            </div>
+                        </div>
+                    
+                        <div class="content">
+                            <%= productora.descripcion %> <a><%= productora.handle %></a>.
+                            <a href="#">#css</a> <a href="#">#responsive</a>
+                            <br>
+                            <time datetime="<%= productora.created_at %>"><%= productora.created_at %></time>
+                            <% if (privilegios.indexOf('crear_peliculas') >=0) { %>
+                                <br> <br>
+                                <a href="/peliculas/editar/<%=productora.id %>" class="button is-primary is-rounded">Editar</a>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    </div>
+<% } else { %>
+    <h1>No hay productoras registradas</h1>
+<% } %>   
+
+<% if (ultima_pelicula != '') { %>
+    <div class="notification is-link is-light">
+        Última pelicula agregada: <%= ultima_pelicula %>
+    </div>
+<% } %>
+<% if (privilegios.indexOf('crear_peliculas') >=0 ){ %>
+    <a href="/peliculas/nueva" class="button is-link is-rounded">Registrar Peliculas</a>
+<% } %>
+<script>
+    document.getElementById("buscar").onkeyup = () => {
+        //función que manda la petición asíncrona
+        const valor_busqueda = document.getElementById("buscar").value;
+
+        console.log(valor_busqueda);
+
+        fetch('/peliculas/buscar/' + valor_busqueda, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }).then(result => {
+            return result.json(); //Regresa otra promesa
+        }).then(data => {
+            //Modificamos el DOM de nuestra página de acuerdo a los datos de la segunda promesa
+            console.log(data.peliculas);
+            let respuesta = "";
+            if (data.peliculas.length > 0) { 
+                respuesta += '<div class="columns">';
+                let columns = 0;
+                for (let productora of data.peliculas) { 
+                    if (columns % 4 == 0) {
+                        respuesta += '</div>';
+                        respuesta += '<div class="columns">';
+                    }
+                    columns++;
+                    respuesta += '<div class="column">';
+                        respuesta += '<div class="card">';
+                            respuesta += '<div class="card-image">';
+                                respuesta += '<figure class="image is-4by3">';
+                                    respuesta += '<img src="/uploads/' + productora.imagen +'" alt="Placeholder image">';
+                                respuesta += '</figure>';
+                            respuesta += '</div>';
+                            respuesta += '<div class="card-content">';
+                                respuesta += '<div class="media">';
+                                    respuesta += '<div class="media-left">';
+                                        respuesta += '<figure class="image is-48x48">';
+                                            respuesta += '<img src="/uploads/' + productora.imagen + '" alt="Placeholder image">';
+                                        respuesta += '</figure>';
+                                    respuesta += '</div>';
+                                    respuesta += '<div class="media-content">';
+                                        respuesta += '<p class="title is-4">' + productora.titulo + '</p>';
+                                        respuesta += '<p class="subtitle is-6">@' + productora.productora + '</p>';
+                                    respuesta += '</div>';
+                                respuesta += '</div>';
+                            
+                                respuesta += '<div class="content">';
+                                    respuesta += productora.descripcion + '<a>' + productora.handle + '</a>.';
+                                    respuesta += '<a href="#">#css</a> <a href="#">#responsive</a>';
+                                    respuesta += '<br>';
+                                    respuesta += '<time datetime="' + raza.created_at + '">' + productora.created_at + '</time>';
+                                    //if (privilegios.indexOf('crear_perros') >= 0) { 
+                                    //    <br><br>
+                                    //    <a href="/perros/editar/ raza.id " class="button is-primary is-rounded">Editar</a>
+                                    //} 
+                                respuesta += '</div>';
+                            respuesta += '</div>';
+                        respuesta += '</div>';
+                    respuesta += '</div>';
+                } 
+            respuesta += '</div>';
+            } else { 
+                respuesta += '<h1>No hay perros registrados</h1>';
+            }   
+
+            document.getElementById("resultados").innerHTML = respuesta;
+
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+</script>
+
+<%- include('includes/foot.ejs') %>
